@@ -5,6 +5,7 @@ typedef struct Station{
     char nom[100];
     //durée séparant les deux stations consécutives
     int dureeverssuiv;
+    struct Station *prec;
     struct Station* suiv;
 }Station;
 
