@@ -16,12 +16,16 @@ typedef struct Ligne{
 }Ligne;
 
 Ligne* creerligne(char nom[]);
-Station* creerstation(char nom[], int duree);//va prendre des données venant de l'utilisateurs spour créer les stations constituants la ligne
 
 //ajout
-void ajouterligne(Ligne ** reseau, Ligne* nouvlig);
-void ajouterStation(Ligne *ligne, char nom[], int position, int durreeAvant, int dureeApres);
- 
+void ajouterligne(Ligne ** reseau, Ligne* ligne);
+void ajouterStation(Ligne *ligne, char nom[], int position, int dureeAvant, int dureeApres);
+//autre
+int nombreStations(Ligne *ligne);
+int positionValide(Ligne *ligne, int position);
+void insererStationDebut(Ligne *ligne, char nom[], int dureeApres);
+void insererStationFin(Ligne *ligne, char nom[], int dureeAvant);
+void insererStationMilieu(Ligne *ligne, char nom[], int position, int dureeAvant, int dureeApres);
 //recherche
 char* rechercheStationAvant(Ligne *ligne, int position);//pour pouvoir demander la durée à l'utilisateur ensuite
 char* rechercheStationApres(Ligne *ligne, int position);
