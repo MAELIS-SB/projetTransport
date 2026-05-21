@@ -14,7 +14,7 @@ void afficherLignes(Ligne *reseau);
 //affichage des stations dans le bon ordre et dans l'ordre inverse
 void afficherStations(Ligne *ligne);
 
-//statistique rrécursives
+//statistique récursives
 int compterStations(Station *station);
 
 int calculerDureeTotale(Station *station);

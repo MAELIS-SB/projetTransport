@@ -32,7 +32,8 @@ char* rechercheStationAvant(Ligne *ligne, int position);//pour pouvoir demander 
 char* rechercheStationApres(Ligne *ligne, int position);
 Ligne *rechercherLigne(Ligne *reseau,  char nom[]);
 
-Station *rechercherStation(Ligne *ligne, char nom[]);
+Station *rechercherStationNom(Ligne *ligne, char nom[]);
+Station *rechercherStationPos(Ligne *ligne, int position);
 
 Station *rechercherStationReseau(Ligne *reseau, char nom[]);
 
