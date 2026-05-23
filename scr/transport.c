@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<string.h>
+#include<stdlib.h>
 #include "../include/transport.h"
 
 int nombreStations(Ligne *ligne){

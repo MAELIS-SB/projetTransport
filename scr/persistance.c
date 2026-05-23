@@ -88,7 +88,7 @@ static const char *trouverFermetureBloc(const char *debut, char ouvrant, char fe
 // copie une chaine JSON dans un tableau C
 
 static int copierChaineJSON(const char *debut, char destination[],
-                            size_t tailleDestination, const char **finLecture)
+                            size_t tailleDestination, const char **finLecture) 
 {
     size_t index = 0;
     const char *curseur = debut;
@@ -261,6 +261,7 @@ static void ajouterStationFin(Station **stations, Station *nouvelleStation)
 
     if (*stations == NULL) {
         *stations = nouvelleStation;
+        nouvelleStation->prec=NULL;
         return;
     }
 
@@ -270,6 +271,7 @@ static void ajouterStationFin(Station **stations, Station *nouvelleStation)
     }
 
     courant->suiv = nouvelleStation;
+    nouvelleStation->prec=courant;
 }
 
 static void libererStationsLocales(Station *station)
