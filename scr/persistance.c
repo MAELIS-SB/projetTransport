@@ -225,6 +225,7 @@ static Station *creerStationLocale(const char *nom, int dureeVersSuiv)
     strncpy(station->nom, nom != NULL ? nom : "", sizeof(station->nom) - 1);
     station->nom[sizeof(station->nom) - 1] = '\0';
     station->dureeverssuiv = dureeVersSuiv;
+    station->prec = NULL;
     station->suiv = NULL;
 
     return station;
@@ -260,6 +261,7 @@ static void ajouterStationFin(Station **stations, Station *nouvelleStation)
     }
 
     if (*stations == NULL) {
+        nouvelleStation->prec = NULL;
         *stations = nouvelleStation;
         nouvelleStation->prec=NULL;
         return;
@@ -270,6 +272,7 @@ static void ajouterStationFin(Station **stations, Station *nouvelleStation)
         courant = courant->suiv;
     }
 
+    nouvelleStation->prec = courant;
     courant->suiv = nouvelleStation;
     nouvelleStation->prec=courant;
 }
