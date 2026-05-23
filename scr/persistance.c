@@ -263,7 +263,7 @@ static void ajouterStationFin(Station **stations, Station *nouvelleStation)
     if (*stations == NULL) {
         nouvelleStation->prec = NULL;
         *stations = nouvelleStation;
-        nouvelleStation->prec=NULL;
+        
         return;
     }
 
@@ -274,7 +274,7 @@ static void ajouterStationFin(Station **stations, Station *nouvelleStation)
 
     nouvelleStation->prec = courant;
     courant->suiv = nouvelleStation;
-    nouvelleStation->prec=courant;
+    
 }
 
 static void libererStationsLocales(Station *station)
