@@ -13,6 +13,7 @@ void afficherLignes(Ligne *reseau);
 
 //affichage des stations dans le bon ordre et dans l'ordre inverse
 void afficherStations(Ligne *ligne);
+void afficherStationsInverse(Ligne *ligne);
 
 //statistique récursives
 int compterStations(Station *station);

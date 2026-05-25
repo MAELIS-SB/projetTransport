@@ -530,3 +530,89 @@ Ligne *chargerJSON(const char *nomFichier){
     free(contenu);
     return reseau;
 }
+
+
+
+//enregistrer dans le fichier
+
+void ecrireStationsJSON(FILE *f, Station *station)
+{
+    Station *courant = station;
+
+    fprintf(f, "[\n");
+
+    while (courant != NULL) {
+
+        fprintf(f,
+                "        { \"nom\": \"%s\", \"dureeverssuiv\": %d }",
+                courant->nom,
+                courant->dureeverssuiv);
+
+        if (courant->suiv != NULL) {
+            fprintf(f, ",");
+        }
+
+        fprintf(f, "\n");
+        courant = courant->suiv;
+    }
+
+    fprintf(f, "      ]");
+}
+
+void ecrireLigneJSON(FILE *f, Ligne *ligne, int derniereLigne)
+{
+    if (f == NULL || ligne == NULL) {
+        return;
+    }
+
+    fprintf(f, "    {\n");
+
+    fprintf(f, "      \"nom\": \"%s\",\n", ligne->nom);
+
+    fprintf(f, "      \"stations\": ");
+    ecrireStationsJSON(f, ligne->stations);
+    fprintf(f, "\n");
+
+    fprintf(f, "    }");
+
+    if (!derniereLigne) {
+        fprintf(f, ",");
+    }
+
+    fprintf(f, "\n");
+}
+
+void sauvegarderJSON(Ligne *reseau, const char *nomFichier)
+{
+    FILE *f;
+    Ligne *courant;
+
+    if (nomFichier == NULL) {
+        return;
+    }
+
+    f = fopen(nomFichier, "w");
+
+    if (f == NULL) {
+        return;
+    }
+
+    fprintf(f, "{\n");
+    fprintf(f, "  \"lignes\": [\n");
+
+    courant = reseau;
+
+    while (courant != NULL) {
+
+        ecrireLigneJSON(f, courant, courant->suiv == NULL);
+
+        courant = courant->suiv;
+    }
+
+    fprintf(f, "  ]\n");
+    fprintf(f, "}\n");
+
+    fclose(f);
+}
+
+
