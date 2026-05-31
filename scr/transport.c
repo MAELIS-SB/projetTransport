@@ -3,23 +3,19 @@
 #include<stdlib.h>
 #include "../include/transport.h"
 
-int nombreStations(Ligne *ligne){
+int nombreStations(Station *station){
 
-    int count = 0;
-    Station *courant = ligne->stations;
-
-    while(courant != NULL){
-        count++;
-        courant = courant->suiv;
+    if(station == NULL){
+        return 0;
     }
-    return count;
+
+    return 1 + nombreStations(station->suiv);
 }
 
 int positionValide(Ligne *ligne, int position){
     
-    int nbStations = nombreStations(ligne);
-    if(position==nbStations+1) position=-1;
-
+    int nbStations = nombreStations(ligne->stations);
+   
     // insertion au début
     if(position == 1) return 1;
 
@@ -32,16 +28,37 @@ int positionValide(Ligne *ligne, int position){
     return 0;
 }
 
-void insererStationDebut(Ligne *ligne, char nom[], int dureeApres){
-    Station *station=malloc(sizeof(Station));
-    if(station==NULL){
-        printf("erreur d'allocation \n");
+Station* creerStation(char nom[]){
+    Station* station=malloc(sizeof(Station));
+    if(station == NULL){
+        printf("Erreur d'allocation\n");
+        return NULL;
+    }
+
+    strcpy(station->nom,nom);
+    station->dureeverssuiv=0;
+    station->prec=NULL;
+    station->suiv=NULL;
+    return station;
+}
+
+void ajouterStation(Ligne *ligne, Station *station){
+    if(ligne->stations==NULL){
+        ligne->stations=station;
         return;
     }
-    strcpy(station->nom, nom);
+    Station* courant=ligne->stations;
+    while(courant->suiv!=NULL){
+        courant=courant->suiv;
+    }
+    courant->suiv=station;
+    station->prec=courant;
+}
+
+void insererStationDebut(Ligne *ligne, char nom[], int dureeApres){
+    Station *station=creerStation(nom);
     station->dureeverssuiv =dureeApres;
     
-    station->prec=NULL;
     station->suiv=ligne->stations;
 
     if(ligne->stations != NULL){
@@ -52,17 +69,9 @@ void insererStationDebut(Ligne *ligne, char nom[], int dureeApres){
 }
 
 void insererStationFin(Ligne *ligne, char nom[], int dureeAvant){
-    Station *station=malloc(sizeof(Station));
-    if(station==NULL){
-        printf("erreur d'allocation");
-        return;
-    }
-    strcpy(station->nom, nom);
-    station->dureeverssuiv =0;
-    station->suiv=NULL;
+    Station *station=creerStation(nom);
 
     if(ligne->stations == NULL){
-        station->prec=NULL;
         ligne->stations = station;
         return;
     }
@@ -77,14 +86,8 @@ void insererStationFin(Ligne *ligne, char nom[], int dureeAvant){
 }
 
 void insererStationMilieu(Ligne *ligne, char nom[], int position, int dureeAvant){
-    Station* station=malloc(sizeof(Station));
-    if(station==NULL){
-        printf("erreur d'allocation");
-        return;
-    }
+    Station *station=creerStation(nom);
     
-    strcpy(station->nom, nom);
-
     Station* courant=ligne->stations;
     
     int count=1;//car courant ce trouve à la position 1
@@ -103,7 +106,7 @@ void insererStationMilieu(Ligne *ligne, char nom[], int position, int dureeAvant
 }
 
 
-void ajouterStation(Ligne *ligne, char nom[], int position, int duree){
+void insererStation(Ligne *ligne, char nom[], int position, int duree){
     
     if(position==1){ //insertion en debut de chaine
         insererStationDebut(ligne, nom, duree);
@@ -242,6 +245,7 @@ void supprimerLigne(Ligne **reseau, char nom[]){
 
     libererStations(ligne->stations);
     free(ligne);
+    printf("ligne supprimée avec succès");
 }
 
 void libererStations(Station *tete){
@@ -279,4 +283,51 @@ Station *rechercherStationPos(Ligne *ligne, int position){
         count++;
     }
     return courant;
+}
+
+Ligne *rechercherLigne(Ligne *reseau, char nom[]){
+
+    Ligne *courant = reseau;
+    while(courant != NULL){
+        if(strcmp(courant->nom, nom) == 0){
+            return courant;
+        }
+
+        courant = courant->suiv;
+    }
+
+    return NULL;
+}
+
+Station *rechercherStationNom(Ligne *ligne, char nom[]){
+
+    Station *courant = ligne->stations;
+
+    while(courant != NULL){
+        if(strcmp(courant->nom, nom) == 0){
+            return courant;
+        }
+        courant = courant->suiv;
+    }
+    return NULL;
+}
+
+void rechercherStationReseau(Ligne *reseau, char nom[]){
+
+    Ligne *courant = reseau;
+
+
+    while(courant != NULL){
+
+        Station* station = rechercherStationNom(courant, nom);
+
+        if(station != NULL){
+            printf("la station %s a été trouvé sur la ligne '%s' du réseau ", station->nom, courant->nom);
+            return;
+            
+        }
+        courant = courant->suiv;
+    }
+    printf("cette station n'existe pas");
+    
 }

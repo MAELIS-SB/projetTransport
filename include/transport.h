@@ -19,14 +19,16 @@ typedef struct Ligne{
 Ligne* creerligne(char nom[]);
 
 //ajout
+Station* creerStation(char nom[]);
 void ajouterligne(Ligne ** reseau, Ligne* ligne);
-void ajouterStation(Ligne *ligne, char nom[], int position, int dureeAvant, int dureeApres);
+void insererStation(Ligne *ligne, char nom[], int position, int duree);
 //autre
-int nombreStations(Ligne *ligne);
+int nombreStations(Station *station);
 int positionValide(Ligne *ligne, int position);
+void ajouterStation(Ligne *ligne, Station *station);
 void insererStationDebut(Ligne *ligne, char nom[], int dureeApres);
 void insererStationFin(Ligne *ligne, char nom[], int dureeAvant);
-void insererStationMilieu(Ligne *ligne, char nom[], int position, int dureeAvant, int dureeApres);
+void insererStationMilieu(Ligne *ligne, char nom[], int position, int dureeAvant);
 //recherche
 char* rechercheStationAvant(Ligne *ligne, int position);//pour pouvoir demander la durée à l'utilisateur ensuite
 char* rechercheStationApres(Ligne *ligne, int position);
@@ -35,7 +37,7 @@ Ligne *rechercherLigne(Ligne *reseau,  char nom[]);
 Station *rechercherStationNom(Ligne *ligne, char nom[]);
 Station *rechercherStationPos(Ligne *ligne, int position);
 
-Station *rechercherStationReseau(Ligne *reseau, char nom[]);
+void rechercherStationReseau(Ligne *reseau, char nom[]);
 
 
 //Suppression 
