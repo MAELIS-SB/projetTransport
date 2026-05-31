@@ -1,0 +1,13 @@
+{
+  "lignes": [
+    {
+      "nom": "ligne1",
+      "stations": [
+        { "nom": "totalmelen", "dureeverssuiv": 12 },
+        { "nom": "carrefouremia", "dureeverssuiv": 7 },
+        { "nom": "chateau", "dureeverssuiv": 10 },
+        { "nom": "tradat", "dureeverssuiv": 0 }
+      ]
+    }
+  ]
+}

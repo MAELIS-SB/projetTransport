@@ -179,7 +179,7 @@ char* rechercheStationApres(Ligne *ligne, int position){
 
 void supprimerStation(Ligne *ligne, char nom[]){
 
-    Station *station = rechercherStation(ligne, nom);
+    Station *station = rechercherStationNom(ligne, nom);
     if(station == NULL){
         printf("Aucune station %s trouvee\n", nom);
         return;

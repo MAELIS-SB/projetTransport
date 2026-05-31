@@ -16,11 +16,11 @@ typedef struct Ligne{
     struct Ligne* suiv;
 }Ligne;
 
-Ligne* creerligne(char nom[]);
+Ligne* creerLigne(char nom[]);
 
 //ajout
 Station* creerStation(char nom[]);
-void ajouterligne(Ligne ** reseau, Ligne* ligne);
+void ajouterLigne(Ligne ** reseau, Ligne* ligne);
 void insererStation(Ligne *ligne, char nom[], int position, int duree);
 //autre
 int nombreStations(Station *station);

@@ -29,7 +29,7 @@ void afficherStations(Station *station){
         printf(" -> ");
     }
 
-    afficherStationsRec(station->suiv);
+    afficherStations (station->suiv);
 }
 
 void afficherStationsInverse(Station *station){
@@ -37,12 +37,12 @@ void afficherStationsInverse(Station *station){
     if(station == NULL){
         return;
     }
-    afficherStationsInverseRec(station->suiv);
-    printf("%s", station->nom);
+    afficherStationsInverse(station->suiv);
 
     if(station->suiv != NULL){
         printf(" -> ");
     }
+    printf("%s", station->nom);
 }
 
 void afficherLignes(Ligne *reseau){
@@ -57,5 +57,5 @@ void afficherLignes(Ligne *reseau){
     afficherStationsInverse(reseau->stations);
     printf("\n");
 
-    afficherStationsRec(reseau->suiv);
+    afficherLignes(reseau->suiv);
 }

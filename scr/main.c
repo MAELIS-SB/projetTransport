@@ -109,7 +109,7 @@ int main(){
                 scanf("%s", nom);
                 Station*station= creerStation(nom);
                 ajouterStation(ligne, station);
-                ajouterligne(&reseau, ligne);
+                ajouterLigne(&reseau, ligne);
                 printf("ligne ajoutee avec succes\n");
 
                 break;
@@ -144,7 +144,7 @@ int main(){
                     int dureeApres;
                     printf("vous souhaitez insérez une station à la position %d donc avant %s\n", position, ligne->stations->nom);
                     printf("entrer la durée separant la nouvelle station %s et %s\n", nom, ligne->stations->nom);
-                    scanf("%d", dureeApres);
+                    scanf("%d", &dureeApres);
                     insererStationDebut(ligne, nom, dureeApres);
                 }else if(position==-1){
                     int dureeAvant;
@@ -154,14 +154,14 @@ int main(){
                     }
                     printf("vous souhaitez insérez une station en fin de liste c'est à dire après %s\n", courant->nom);
                     printf("entrer la durée separant %s et la nouvelle station %s\n", courant->nom, nom);
-                    scanf("%d", dureeAvant);
+                    scanf("%d", &dureeAvant);
                     insererStationFin(ligne, nom, dureeAvant);
                 }else{
                     Station*courant= rechercherStationPos(ligne, position);
                     int dureeAvant;
                     printf("vous souhaitez insérez une station à la position %d donc entre %s et %s\n", position, courant->prec->nom, courant->nom);
                     printf("entrer la durée separant %s et la nouvelle station %s\n", courant->prec->nom, nom);
-                    scanf("%d", dureeAvant);
+                    scanf("%d", &dureeAvant);
                     if(dureeAvant>= courant->prec->dureeverssuiv){
                         printf("cette duree n'est pas valide car duree separant %s et %s est %d\n", courant->prec->nom, courant->nom, courant->prec->dureeverssuiv);
                         break;
