@@ -66,6 +66,7 @@ void insererStationDebut(Ligne *ligne, char nom[], int dureeApres){
     }
 
     ligne->stations=station;
+    printf("ligne inséré avec succès");
 }
 
 void insererStationFin(Ligne *ligne, char nom[], int dureeAvant){
@@ -83,6 +84,7 @@ void insererStationFin(Ligne *ligne, char nom[], int dureeAvant){
     courant->dureeverssuiv=dureeAvant;
     courant->suiv=station;
     station->prec=courant;
+    printf("ligne inséré avec succès");
 }
 
 void insererStationMilieu(Ligne *ligne, char nom[], int position, int dureeAvant){
@@ -103,6 +105,7 @@ void insererStationMilieu(Ligne *ligne, char nom[], int position, int dureeAvant
     station->prec=courant->prec;
     station->suiv=courant;
     courant->prec=station;
+    printf("ligne inséré avec succès");
 }
 
 
@@ -209,6 +212,7 @@ void supprimerStation(Ligne *ligne, char nom[]){
         station->suiv->prec= station->prec;
         station->prec->dureeverssuiv += station->dureeverssuiv;
     }
+    printf("station supprimé avec succès");
 
     free(station);
 }

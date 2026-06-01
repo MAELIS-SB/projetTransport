@@ -8,6 +8,24 @@
         { "nom": "chateau", "dureeverssuiv": 10 },
         { "nom": "tradat", "dureeverssuiv": 0 }
       ]
+    },
+    {
+      "nom": "ligne 2",
+      "stations": [
+        { "nom": "rond point nlonkak", "dureeverssuiv": 10 },
+        { "nom": "select", "dureeverssuiv": 20 },
+        { "nom": "marché foundi", "dureeverssuiv": 5 },
+        { "nom": "poste centrale", "dureeverssuiv": 0 }
+      ]
+    },
+    {
+      "nom": "ligne 3",
+      "stations": [
+        { "nom": "collège la retraite", "dureeverssuiv": 5 },
+        { "nom": "palais des sports", "dureeverssuiv": 20 },
+        { "nom": "niki", "dureeverssuiv": 20 },
+        { "nom": "carrefour bankolo", "dureeverssuiv": 0 }
+      ]
     }
   ]
 }
