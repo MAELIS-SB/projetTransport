@@ -19,41 +19,54 @@ int compterStations(Station *station){
 
 void afficherStations(Station *station){
 
-    if(station == NULL){
+    static int numero=1;
+    if(station==NULL){
+        numero=1;
         return;
     }
 
-    printf("%s", station->nom);
+    printf("%d. %s\n",numero,station->nom );
 
-    if(station->suiv != NULL){
-        printf(" -> ");
+    if(station->suiv!=NULL){
+
+        printf( "   -> %d min\n\n", station->dureeverssuiv);
     }
+    numero++;
 
-    afficherStations (station->suiv);
+    afficherStations(station->suiv);
 }
 
 void afficherStationsInverse(Station *station){
 
-    if(station == NULL){
+    static int numero=1;
+
+    if(station==NULL){
+        numero=1;
         return;
     }
-    afficherStationsInverse(station->suiv);
+    afficherStationsInverse(
+        station->suiv
+    );
 
-    if(station->suiv != NULL){
-        printf(" -> ");
+    printf("%d. %s\n", numero,station->nom);
+
+    if(station->prec!=NULL){
+        printf("   -> %d min\n\n",station->prec->dureeverssuiv);
     }
-    printf("%s", station->nom);
+    numero++;
 }
 
 void afficherLignes(Ligne *reseau){
     if(reseau == NULL){
         return;
     }
-
-    printf("%s\n", reseau->nom);
+    printf("\n====================\n");
+    printf("LIGNE: %s\n", reseau->nom);
+    printf("====================\n");
     printf("Stations: ") ;
+    printf("\nORDRE NORMAL\n");
     afficherStations(reseau->stations);
-    printf("\n dans l'ordre inverse on a: ");
+    printf("\nORDRE INVERSE\n");
     afficherStationsInverse(reseau->stations);
     printf("\n");
 

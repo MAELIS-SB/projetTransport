@@ -17,7 +17,7 @@ int main(){
 
     do {
 
-        printf("\n===== MENU =====\n");
+        printf("\n\n===== MENU =====\n\n");
 
         printf("1. Afficher toutes les lignes\n");
         printf("2. Rechercher une ligne et afficher ses stations \n");
@@ -51,9 +51,14 @@ int main(){
                     printf(" cette ligne n'existe pas\n");
                     break;
                 }
+                printf("\n====================\n");
+                printf("LIGNE : %s\n",ligne->nom);
+                printf("====================\n");
+
+                printf("\nORDRE NORMAL\n\n");
                 afficherStations(ligne->stations);
-                printf("et dans l'ordre inverse on a \n");
-                afficherStationsInverse(ligne->stations);
+                printf("\nORDRE INVERSE\n\n");
+                afficherStationsInverse( ligne->stations);
                 break;
             }
             case 3:{
@@ -120,7 +125,8 @@ int main(){
                 Station*station= creerStation(nom);
                 ajouterStation(ligne, station);
                 ajouterLigne(&reseau, ligne);
-                printf("ligne ajoutee avec succes\n");
+                printf("ligne ajoutée avec succès\n");
+                sauvegarderJSON(reseau,"data/reseau.json");
 
                 break;
             }
@@ -206,6 +212,7 @@ int main(){
                 printf("entrer le nom de la station à supprimer\n");
                 lireChaine(nomStation,100);
                 supprimerStation(ligne, nomStation);
+                sauvegarderJSON(reseau,"data/reseau.json");
                 break;
             }
             case 8:{
@@ -213,8 +220,16 @@ int main(){
                 
                 printf("entrer le nom de la ligne que vous souhaitez supprimer\n");
                 lireChaine(nomLigne,100);
-                
+                int conf;
+                printf("Êtes-vous sûr de vouloir supprimer cette ligne ?");
+                scanf("%d",&conf);
+                while(getchar()!='\n');
+
+
+                if(conf==1){
                 supprimerLigne(&reseau, nomLigne);
+                sauvegarderJSON(reseau,"data/reseau.json");
+                }
         
                 break;
             }

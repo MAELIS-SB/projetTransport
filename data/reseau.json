@@ -26,6 +26,14 @@
         { "nom": "niki", "dureeverssuiv": 20 },
         { "nom": "carrefour bankolo", "dureeverssuiv": 0 }
       ]
+    },
+    {
+      "nom": "ligne 4",
+      "stations": [
+        { "nom": "mini ferme", "dureeverssuiv": 30 },
+        { "nom": "marché mokolo", "dureeverssuiv": 12 },
+        { "nom": "madagascar", "dureeverssuiv": 0 }
+      ]
     }
   ]
 }

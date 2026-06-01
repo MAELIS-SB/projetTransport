@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<string.h>
+#include <strings.h>
 #include<stdlib.h>
 #include "../include/transport.h"
 
@@ -53,6 +54,7 @@ void ajouterStation(Ligne *ligne, Station *station){
     }
     courant->suiv=station;
     station->prec=courant;
+    printf("station ajoutee avec succes\n");
 }
 
 void insererStationDebut(Ligne *ligne, char nom[], int dureeApres){
@@ -66,7 +68,7 @@ void insererStationDebut(Ligne *ligne, char nom[], int dureeApres){
     }
 
     ligne->stations=station;
-    printf("ligne inséré avec succès");
+    printf("ligne insérée avec succès");
 }
 
 void insererStationFin(Ligne *ligne, char nom[], int dureeAvant){
@@ -84,7 +86,7 @@ void insererStationFin(Ligne *ligne, char nom[], int dureeAvant){
     courant->dureeverssuiv=dureeAvant;
     courant->suiv=station;
     station->prec=courant;
-    printf("ligne inséré avec succès");
+    printf("ligne insérée avec succès");
 }
 
 void insererStationMilieu(Ligne *ligne, char nom[], int position, int dureeAvant){
@@ -105,7 +107,7 @@ void insererStationMilieu(Ligne *ligne, char nom[], int position, int dureeAvant
     station->prec=courant->prec;
     station->suiv=courant;
     courant->prec=station;
-    printf("ligne inséré avec succès");
+    printf("ligne insérée avec succès");
 }
 
 
@@ -293,7 +295,7 @@ Ligne *rechercherLigne(Ligne *reseau, char nom[]){
 
     Ligne *courant = reseau;
     while(courant != NULL){
-        if(strcmp(courant->nom, nom) == 0){
+        if(strcasecmp(courant->nom, nom) == 0){
             return courant;
         }
 
@@ -308,7 +310,7 @@ Station *rechercherStationNom(Ligne *ligne, char nom[]){
     Station *courant = ligne->stations;
 
     while(courant != NULL){
-        if(strcmp(courant->nom, nom) == 0){
+        if(strcasecmp(courant->nom, nom) == 0){
             return courant;
         }
         courant = courant->suiv;
