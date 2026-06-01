@@ -15,21 +15,30 @@ int main(){
 
     int choix;
 
+    printf("\n");
+    printf("========================================\n");
+    printf("      GESTION DU RESEAU DE TRANSPORT\n");
+    printf("========================================\n");
+
     do {
 
-        printf("\n\n===== MENU =====\n\n");
+        printf("\n");
+        printf("+------------------------------------------------------+\n");
+        printf("|                     MENU PRINCIPAL                   |\n");
+        printf("+------------------------------------------------------+\n");
 
-        printf("1. Afficher toutes les lignes\n");
-        printf("2. Rechercher une ligne et afficher ses stations \n");
-        printf("3. Duree totale nécessaire pour parcourir une ligne\n");
-        printf("4. nombre de stations d'une ligne\n");
-        printf("5. Ajouter une ligne\n");
-        printf("6. Ajouter une station\n");
-        printf("7. Supprimer une station\n");
-        printf("8. Supprimer une ligne\n");
-        printf("9. Rechercher une station\n");
+        printf("| 1. Afficher toutes les lignes                        |\n");
+        printf("| 2. Rechercher une ligne et afficher ses stations     |\n");
+        printf("| 3. Duree totale nécessaire pour parcourir une ligne  |\n");
+        printf("| 4. nombre de stations d'une ligne                    |\n");
+        printf("| 5. Ajouter une ligne                                 |\n");
+        printf("| 6. Ajouter une station                               |\n");
+        printf("| 7. Supprimer une station                             |\n");
+        printf("| 8. Supprimer une ligne                               |\n");
+        printf("| 9. Rechercher une station                            |\n");
 
-        printf("0. Quitter\n");
+        printf("| 0. Quitter                                           |\n");
+        printf("+------------------------------------------------------+\n");
 
         printf("\nVotre choix : ");
         scanf("%d", &choix);
@@ -221,7 +230,7 @@ int main(){
                 printf("entrer le nom de la ligne que vous souhaitez supprimer\n");
                 lireChaine(nomLigne,100);
                 int conf;
-                printf("Êtes-vous sûr de vouloir supprimer cette ligne ?");
+                printf("Êtes-vous sûr de vouloir supprimer cette ligne 1/0 \n ?");
                 scanf("%d",&conf);
                 while(getchar()!='\n');
 
@@ -244,7 +253,7 @@ int main(){
             }
             
             case 0:{
-                printf("Au revoir...\n");
+                printf("Au revoir!!!\n");
                 break;
             }
             default:
